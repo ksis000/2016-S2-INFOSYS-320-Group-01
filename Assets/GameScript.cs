@@ -1,20 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Pathfinding.Serialization.JsonFx;
 
 public class GameScript : MonoBehaviour
 {
     string Info = "HIT detected";
+    string description;
     private bool PopUp;
     private Texture2D myGUITexture;
-
+    //MusicalInstrument[] musicalInstruments;
+    
+    public string _WebsiteURL = "http://test320123456.azurewebsites.net/tables/MusicInstrument?zumo-api-version=2.0.0";
 
     // Use this for initialization
     void Start()
     {
         
-    myGUITexture = (Texture2D)Resources.Load("black");
+   
+
+        //Reguest.GET can be called passing in your ODATA url as a string in the form:
+        //http://{Your Site Name}.azurewebsites.net/tables/{Your Table Name}?zumo-api-version=2.0.0
+        //The response produce is a JSON string
+        string jsonResponse = Request.GET(_WebsiteURL);
+
+        //Just in case something went wrong with the request we check the reponse and exit if there is no response.
+        if (string.IsNullOrEmpty(jsonResponse))
+        {
+            return;
+        }
+
+        Debug.Log(jsonResponse);
+
+        //We can now deserialize into an array of objects - in this case the class we created. The deserializer is smart enough to instantiate all the classes and populate the variables based on column name.
+        MusicInstrument[] cenotaphs = JsonReader.Deserialize<MusicInstrument[]>(jsonResponse);
+
+        Debug.Log(cenotaphs.Length);
+
+        foreach (MusicInstrument musicalInstrument in cenotaphs)
+        {
+            Info = musicalInstrument.Title;
+            description = musicalInstrument.Description;
+
+        }
+        myGUITexture = (Texture2D)Resources.Load("black");
         Debug.Log(myGUITexture.ToString());
-        
+
+
+
 
     }
 
@@ -57,11 +89,13 @@ public class GameScript : MonoBehaviour
         labelButton.alignment = TextAnchor.UpperCenter;
         labelButton.wordWrap = true;
 
-        string description = "Some further infomation and description would go here";
+        //string description = "Some further infomation and description would go here";
         GUIStyle desc = new GUIStyle("Box");
         desc.fontSize = 50;
         desc.alignment = TextAnchor.MiddleCenter;
         desc.wordWrap = true;
+
+       
 
         if (PopUp)
         {

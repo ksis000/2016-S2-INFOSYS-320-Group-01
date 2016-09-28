@@ -12,7 +12,7 @@ public class cube : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //this.transform.Rotate(0.5f, 0.5f, 0.5f);
-        this.transform.RotateAround(Vector3.zero, Vector3.up, 70 * Time.deltaTime);
+        this.transform.RotateAround(Vector3.zero, Vector3.up, 140 * Time.deltaTime);
 
     }
 }
