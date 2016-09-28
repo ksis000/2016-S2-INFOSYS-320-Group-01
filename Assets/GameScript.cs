@@ -8,9 +8,11 @@ public class GameScript : MonoBehaviour
     string description;
     private bool PopUp;
     private Texture2D myGUITexture;
+    private Texture2D violinY;
+    //private GameObject canvas;
     //MusicalInstrument[] musicalInstruments;
     
-    public string _WebsiteURL = "http://test320123456.azurewebsites.net/tables/MusicInstrument?zumo-api-version=2.0.0";
+    public string _WebsiteURL = "http://test320123456.azurewebsites.net/tables/MusicInstrument/2c616542-fc46-4365-b9b6-d317c994375b?zumo-api-version=2.0.0";
 
     // Use this for initialization
     void Start()
@@ -32,17 +34,21 @@ public class GameScript : MonoBehaviour
         Debug.Log(jsonResponse);
 
         //We can now deserialize into an array of objects - in this case the class we created. The deserializer is smart enough to instantiate all the classes and populate the variables based on column name.
-        MusicInstrument[] cenotaphs = JsonReader.Deserialize<MusicInstrument[]>(jsonResponse);
+        MusicInstrument cenotaphs = JsonReader.Deserialize<MusicInstrument>(jsonResponse);
 
-        Debug.Log(cenotaphs.Length);
+        //Debug.Log(cenotaphs.Length);
 
-        foreach (MusicInstrument musicalInstrument in cenotaphs)
-        {
-            Info = musicalInstrument.Title;
-            description = musicalInstrument.Description;
+        //foreach (MusicInstrument musicalInstrument in cenotaphs)
+        //{
+        // Info = musicalInstrument.Title;
+        // description = musicalInstrument.Description;
 
-        }
+        //}
+        Info = cenotaphs.Title;
+        description = cenotaphs.Description;
+
         myGUITexture = (Texture2D)Resources.Load("black");
+        violinY = (Texture2D)Resources.Load("violin");
         Debug.Log(myGUITexture.ToString());
 
 
@@ -67,6 +73,7 @@ public class GameScript : MonoBehaviour
                     //obj.GetComponent<Animation>().Play("cube");
                     Debug.Log("HIT!!");
                     PopUp = true;
+
                 }
             }
         }
@@ -77,8 +84,13 @@ public class GameScript : MonoBehaviour
         //Rect rect = new Rect(20, 20, 300, 200);
         Rect rect = new Rect(0, 0, Screen.width, Screen.height);
         Rect rectTitle = new Rect(0, 20, Screen.width, Screen.height);
-        Rect rectDesc = new Rect(0, 0, Screen.width, Screen.height);
+        Rect rectDesc = new Rect(40, 100, (Screen.width - 70), Screen.height);
         Rect close = new Rect((rect.xMax - 110), 5, 100, 100);
+
+        Rect youtube = new Rect(0, (Screen.height / (float)1.5), Screen.width, (Screen.height / 2));
+        Rect youtubeBtn = new Rect(0, (Screen.height / (float)1.5), Screen.width, (Screen.height / 2));
+
+
         GUIStyle closeButton = new GUIStyle("button");
         closeButton.fontSize = 60;
         closeButton.alignment = TextAnchor.UpperCenter;
@@ -91,8 +103,8 @@ public class GameScript : MonoBehaviour
 
         //string description = "Some further infomation and description would go here";
         GUIStyle desc = new GUIStyle("Box");
-        desc.fontSize = 50;
-        desc.alignment = TextAnchor.MiddleCenter;
+        desc.fontSize = 30;
+        desc.alignment = TextAnchor.UpperLeft;
         desc.wordWrap = true;
 
        
@@ -103,9 +115,15 @@ public class GameScript : MonoBehaviour
             if (GUI.Button(close,"X", closeButton))
             {
                 PopUp = false;
+                
             }
             GUI.Label(rectTitle, Info, labelButton);
             GUI.Box(rectDesc, description, desc);
+            GUI.Box(youtube, violinY);
+            if (GUI.Button(youtubeBtn, " "))
+            {
+                Application.OpenURL("https://youtu.be/zgaQFLUdUL0?t=140");
+            }
         }
     }
 
