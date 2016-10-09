@@ -1,14 +1,9 @@
-TodoREST
+CRUD Apps for MusicInstrument Table
 ========
-
-This sample demonstrates a Todo list application where the data is stored and accessed from a RESTful web service. The web service is hosted by Xamarin and provides read-only access to the data. Therefore, the operations that create, update, and delete data will not alter the data consumed in the application. However, a hostable version of the REST service that provides read-write access to the data is stored in the *TodoRESTService* folder.
-
 The app functionality is:
 
-- View a list of tasks.
-- Add, edit, and delete tasks.
-- Set a task's status to 'done'.
-- Speak the task's name and notes fields.
+- View a list of MusicInstruments.
+- Add, edit, and delete MusicInstruments.
 
 In all cases the tasks are stored in an in-memory collection that's accessed through a RESTful web service.
 
@@ -17,4 +12,4 @@ For more information about the sample see [Consuming a RESTful Web Service](http
 Author
 ------
 
-David Britch
+Navdeep Jador
