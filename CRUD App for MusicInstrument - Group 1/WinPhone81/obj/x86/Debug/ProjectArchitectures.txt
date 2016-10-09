@@ -1,0 +1,2 @@
+C:\Users\Navi\Downloads\TodoREST\TodoREST\TodoREST.csproj;neutral
+C:\Users\Navi\Downloads\TodoREST\WinPhone81\TodoREST.WinPhone81.csproj;x86

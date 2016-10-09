@@ -1,0 +1,2 @@
+C:\Users\Navi\Downloads\TodoREST\TodoREST\TodoREST.csproj;neutral
+C:\Users\Navi\Downloads\TodoREST\UWP\TodoREST.UWP.csproj;x86

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="TodoREST.TodoItemPage" 
+			 Title="MusicInstruments">
+	<ContentPage.Content>
+    <ScrollView>
+		  <StackLayout VerticalOptions="StartAndExpand">
+			  <Label Text="ID" />
+			  <Entry x:Name="idEntry" Text="{Binding Path=ID}" Placeholder="ID" InputTransparent="true"/>
+        <Label Text="Version" />
+			  <Entry x:Name="versionEntry" Text="{Binding Path=Version}" Placeholder="Version" InputTransparent="true" />
+			  <Label Text="ItemID" />
+			  <Entry x:Name="ItemID" Text="{Binding Path=ItemID}" Keyboard="Numeric" InputTransparent="true"/>
+        <Label Text="Title*" />
+			  <Entry x:Name="titleEntry" Text="{Binding Path=Title}" Placeholder="Title" />
+        <Label Text="Description*" />
+			  <Entry x:Name="descriptionEntry" Text="{Binding Path=Description}" Placeholder="Description" />
+        <Label Text="EmbedURL*" />
+			  <Entry x:Name="embedUrlEntry" Text="{Binding Path=EmbedURL}" Placeholder="EmbedURL" />
+        <Label Text="URL*" />
+			  <Entry x:Name="urlEntry" Text="{Binding Path=URL}" Placeholder="URL" />
+        <Label Text="ImageAPI*" />
+			  <Entry x:Name="imageApiEntry" Text="{Binding Path=ImageAPI}" Placeholder="ImageAPI" />
+			  <Button Text="Save" Clicked="OnSaveActivated" />
+			  <Button Text="Delete" Clicked="OnDeleteActivated" />
+			  <Button Text="Cancel" Clicked="OnCancelActivated" />
+			  <Button Text="Speak" Clicked="OnSpeakActivated" />
+		  </StackLayout>
+    </ScrollView>
+	</ContentPage.Content>
+</ContentPage>
